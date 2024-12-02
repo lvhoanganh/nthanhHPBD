@@ -1,0 +1,277 @@
+:root{
+    --pink-color: #FADADD
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #fadadd62, #fadadd62), url(bgrMail.jpg);
+    background-size: cover; /* Đảm bảo hình nền phủ kín toàn bộ màn hình */
+    background-position: center; /* Căn chỉnh hình nền sao cho luôn ở giữa */
+    background-attachment: fixed; /* Đảm bảo hình nền không di chuyển khi cuộn trang */
+}
+
+
+button {
+    border: none; /* Loại bỏ viền */
+    outline: none; /* Loại bỏ viền focus khi nhấn */
+    background: none; /* Loại bỏ nền (nếu cần) */
+    cursor: pointer; /* Thêm con trỏ dạng tay khi hover */
+}
+
+.open-modal-btn {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.inner {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.inner.one {
+    left: 0%;
+    top: 0%;
+    animation: rotate-one calc(var(--i) * 1s) linear infinite;
+    border-bottom: 4px solid #970001;
+    border-right: 4px solid #970001;
+    filter: drop-shadow(0 0 5px #970001) drop-shadow(0 0 5px #970001);
+}
+
+.inner.one::before {
+    position: absolute;
+    content: "";
+    background: url("heart.png");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    z-index: 10000000s;
+    top: 40%;
+    transform: translate(-50%, 30%);
+}
+
+.inner.two {
+    right: 0%;
+    top: 0%;
+    animation: rotate-two calc(var(--i) * 1s) linear infinite;
+    border-right: 4px solid #970001;
+    border-top: 4px solid #970001;
+    filter: drop-shadow(0 0 5px #970001) drop-shadow(0 0 5px #970001);
+}
+
+.inner.two::before {
+    position: absolute;
+    content: "";
+    background: url("heart.png");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    right: 50%;
+    bottom: 0;
+    transform: translate(30%, 50%);
+}
+
+.inner.three {
+    right: 0%;
+    bottom: 0%;
+    animation: rotate-three calc(var(--i) * 1s) linear infinite;
+    border-top: 4px solid #970001;
+    border-left: 4px solid #970001;
+    filter: drop-shadow(0 0 5px #970001) drop-shadow(0 0 10px #970001);
+}
+
+.inner.three::before {
+    position: absolute;
+    background: url("heart.png");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    content: "";
+    right: 2px;
+    top: 50%;
+    transform: translate(50%, -120%);
+}
+
+
+.loader {
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
+.cardHover {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+}
+
+.box-heart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: loaderElectron 0.5s alternate infinite;
+    z-index: -1;
+}
+
+.heart {
+    position: absolute;
+    background: url("heart.png");
+    background-size: cover;
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 10px red) drop-shadow(0 0 40px red) drop-shadow(0 0 60px red);
+}
+
+@keyframes loaderElectron {
+    0% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes rotate-one {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-two {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-three {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal__inner {
+    position: relative;
+    margin: auto;
+    background: white;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 0px;
+}
+
+.modal__body{
+    /* display: flex; */
+    border-radius: 8px;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--pink-color);
+    color: white;
+}
+
+@media screen and (max-width: 390px) {
+    body {
+        height: 100vh;
+        overflow: hidden;
+        font-size: 14px;
+        /* Điều chỉnh kích thước chữ cho màn hình nhỏ */
+    }
+
+    .open-modal-btn {
+        width: 80%;
+        /* Đặt nút vừa với màn hình */
+        font-size: 14px;
+        /* Thu nhỏ font chữ */
+        padding: 10px;
+    }
+
+    .center {
+        flex-direction: column;
+        /* Đặt các phần tử theo cột nếu cần */
+        padding: 10px;
+    }
+
+    .inner {
+        width: 200px;
+        /* Giảm kích thước vòng tròn */
+        height: 200px;
+    }
+
+    .loader {
+        width: 200px;
+        height: 200px;
+    }
+
+    .heart {
+        width: 80px;
+        /* Giảm kích thước biểu tượng */
+        height: 80px;
+    }
+}
+
+.hide{
+    display: none;
+    
+}
+
